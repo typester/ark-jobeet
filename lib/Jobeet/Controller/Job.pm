@@ -1,12 +1,13 @@
 package Jobeet::Controller::Job;
 use Ark 'Controller';
 
+use DateTime;
 use Jobeet::Models;
 
 sub index :Path {
     my ($self, $c) = @_;
 
-    $c->stash->{jobs} = models('Schema::Job');
+    $c->stash->{categories} = models('Schema::Category')->get_with_jobs;
 }
 
 sub show :Path :Args(1) {

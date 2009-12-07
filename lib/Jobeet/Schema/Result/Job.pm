@@ -3,6 +3,9 @@ use strict;
 use warnings;
 use base 'Jobeet::Schema::ResultBase';
 
+use DateTime;
+use Jobeet::Models;
+
 __PACKAGE__->table('jobeet_job');
 
 __PACKAGE__->add_columns(
@@ -101,5 +104,11 @@ __PACKAGE__->add_unique_constraint(['token']);
 
 __PACKAGE__->belongs_to( category => 'Jobeet::Schema::Result::Category', 'category_id' );
 
+sub insert {
+    my $self = shift;
+
+    $self->expires_at( DateTime->now->add( days => models('conf')->{active_days} ) );
+    $self->next::method(@_);
+}
 
 1;
