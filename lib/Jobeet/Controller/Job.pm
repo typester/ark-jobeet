@@ -1,6 +1,8 @@
 package Jobeet::Controller::Job;
 use Ark 'Controller';
 
+with 'Ark::ActionClass::Form';
+
 use DateTime;
 use Jobeet::Models;
 
@@ -14,8 +16,10 @@ sub show :Path :Args(1) {
     my ($self, $c, $job_id) = @_;
 }
 
-sub create :Local {
+sub create :Local :Form('Jobeet::Form::Job') {
     my ($self, $c) = @_;
+
+    
 }
 
 sub job :Chained('/') :PathPart :CaptureArgs(1) {
