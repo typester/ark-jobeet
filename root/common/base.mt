@@ -19,7 +19,7 @@
             <div class="post">
               <h2>Ask for people</h2>
               <div>
-                <a href="<?= $c->uri_for('/job/new') ?>">Post a Job</a>
+                <a href="<?= $c->uri_for('/job/create') ?>">Post a Job</a>
               </div>
             </div>
  

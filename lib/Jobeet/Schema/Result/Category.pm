@@ -44,10 +44,10 @@ sub get_active_jobs {
     my $attr = shift || {};
 
     $self->jobs(
-        { expires_at => { '>=', DateTime->now } },
+        { expires_at => { '>=', DateTime->now }, is_activated => 1 },
         {   order_by => { -desc => 'created_at' },
-            defined $attr->{rows} ? (rows => $attr->{rows}) : (),
-            defined $attr->{page} ? (page => $attr->{page}) : (),
+            defined $attr->{rows} ? ( rows => $attr->{rows} ) : (),
+            defined $attr->{page} ? ( page => $attr->{page} ) : (),
         }
     );
 }
