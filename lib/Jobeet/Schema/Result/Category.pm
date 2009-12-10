@@ -63,7 +63,7 @@ sub insert {
 sub update {
     my $self = shift;
 
-    if ($self->is_changed('name')) {
+    if ($self->is_column_changed('name')) {
         $self->slug( decamelize $self->name );
     }
 
