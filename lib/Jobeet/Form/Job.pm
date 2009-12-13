@@ -85,6 +85,7 @@ param email => (
     type        => 'TextField',
     constraints => [
         'NOT_NULL',
+        'EMAIL_LOOSE',
     ],
 );
 
