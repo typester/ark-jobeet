@@ -84,4 +84,30 @@ $design_category->add_to_jobs({
     }
 }
 
+{
+    my $affiliate = models('Schema::Affiliate')->create({
+        url       => 'http://www.sensio-labs.com/',
+        email     => 'fabien.potencier@example.com',
+        is_active => 1,
+    });
+    $affiliate->add_to_category_affiliate({
+        category_id => models('Schema::Category')->find({ name => 'Programming' })->id,
+    });
+}
+
+{
+    my $affiliate = models('Schema::Affiliate')->create({
+        url       => 'http://www.symfony-project.org/',
+        email     => 'fabien.potencier@example.org',
+        is_active => 1,
+    });
+    $affiliate->add_to_category_affiliate({
+        category_id => models('Schema::Category')->find({ name => 'Design' })->id,
+    });
+    $affiliate->add_to_category_affiliate({
+        category_id => models('Schema::Category')->find({ name => 'Programming' })->id,
+    });
+}
+
 1;
+
