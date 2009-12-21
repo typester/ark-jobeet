@@ -2,6 +2,7 @@ package Jobeet;
 use Ark;
 
 use Data::Page::Navigation;
+use Digest::SHA1 ();
 
 our $VERSION = '0.01';
 
@@ -23,6 +24,12 @@ config 'Plugin::Session::State::Cookie' => {
 
 config 'Plugin::Session::Store::Model' => {
     model => 'cache',
+};
+
+config 'View::MT' => {
+    macro => {
+        sha1_hex => \&Digest::SHA1::sha1_hex,
+    },
 };
 
 1;
